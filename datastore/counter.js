@@ -38,9 +38,36 @@ const writeCounter = (count, callback) => {
 
 // Public API - Fix this function //////////////////////////////////////////////
 
-exports.getNextUniqueId = () => {
-  counter = counter + 1;
-  return zeroPaddedNumber(counter);
+exports.getNextUniqueId = (callback) => {
+  //check to see if counter exists as a text file (readFile)
+  readCounter((err, fileData) => {
+
+    var newCount = fileData + 1;
+    writeCounter(newCount, (err, zeroPaddedNumber) => {
+      callback(zeroPaddedNumber);
+      console.log('Heres your ZPN:' + zeroPaddedNumber);
+    });
+  });
+
+
+
+  //read the number in counter.txt
+  //turn it into zero padded
+  //return number
+
+
+
+/*
+    //if items exists already
+      //turn value into integer
+      //increment value
+      //write id to same file
+    //else
+      //set counter to 1
+
+  // counter = counter + 1;
+  // return zeroPaddedNumber(counter);
+*/
 };
 
 

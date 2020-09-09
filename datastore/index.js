@@ -8,7 +8,8 @@ var items = {};
 // Public API - Fix these CRUD functions ///////////////////////////////////////
 
 exports.create = (text, callback) => {
-  var id = counter.getNextUniqueId();
+  counter.getNextUniqueId(() => {});
+  // do we use counter.writecounter here??
   items[id] = text;
   callback(null, { id, text });
 };
